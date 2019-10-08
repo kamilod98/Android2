@@ -13,39 +13,42 @@ import com.example.conexionbd.clases.connectionBD;
 
 public class Singup extends AppCompatActivity {
 
-    EditText fname;
+    EditText Fname, Lname, Email, Passwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singup);
-        fname = findViewById(R.id.idFname);
+        Fname = findViewById(R.id.idFname);
+        Lname = findViewById(R.id.idLname);
+        Email = findViewById(R.id.idEmail);
+        Passwd = findViewById(R.id.idPassword);
     }
 
     public void Signup(View view){
         //crear el asistente de conexion
-        connectionBD manager = new connectionBD( this, "Data", null, 1);
+        connectionBD manager = new connectionBD( this, "market", null, 1);
         //leer y escribir en la BD
         SQLiteDatabase market = manager.getWritableDatabase();
         //Obtener valores
-        String Fname = fname.getText().toString();
-        String Lname = "";
-        String Email = "";
-        String Passwd = "";
+        String FNAME = Fname.getText().toString();
+        String LNAME = Lname.getText().toString();;
+        String EMAIL = Email.getText().toString();;
+        String PASSWD = Passwd.getText().toString();;
 
-        if (!Fname.isEmpty()){
+        if (!FNAME.isEmpty() && !LNAME.isEmpty() && !EMAIL.isEmpty() && !PASSWD.isEmpty()){
             ContentValues DATA = new ContentValues();
 
-            DATA.put("firstname", Fname);
-            DATA.put("lastname", Lname);
-            DATA.put("email", Email);
-            DATA.put("password", Passwd);
+            DATA.put("firstname", FNAME);
+            DATA.put("lastname", LNAME);
+            DATA.put("email", EMAIL);
+            DATA.put("password", PASSWD);
 
             //Guardar valores en BD
             market.insert("users", null, DATA);
             Toast.makeText(this, "El usuario fue creado", Toast.LENGTH_SHORT).show();
             market.close();
         }else{
-            Toast.makeText(this, "Debe ingresar un usuario", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hya campos vacios", Toast.LENGTH_SHORT).show();
         }
 
     }
