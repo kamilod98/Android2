@@ -3,6 +3,7 @@ package com.example.conexionbd;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -36,19 +37,37 @@ public class Singup extends AppCompatActivity {
         String PASSWD = Passwd.getText().toString();;
 
         if (!FNAME.isEmpty() && !LNAME.isEmpty() && !EMAIL.isEmpty() && !PASSWD.isEmpty()){
-            ContentValues DATA = new ContentValues();
 
-            DATA.put("firstname", FNAME);
-            DATA.put("lastname", LNAME);
-            DATA.put("email", EMAIL);
-            DATA.put("password", PASSWD);
+            //Validacion: No repetir Email si existe
+            Cursor row = market.rawQuery("SELECT email FROM users WHERE email = '" + EMAIL + "'", null);
 
-            //Guardar valores en BD
-            market.insert("users", null, DATA);
-            Toast.makeText(this, "El usuario fue creado", Toast.LENGTH_SHORT).show();
-            market.close();
+            //if (row.moveToFirst())
+            if (row.getCount() > 0){
+                Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+            } else {
+                ContentValues DATA = new ContentValues();
+
+                DATA.put("firstname", FNAME);
+                DATA.put("lastname", LNAME);
+                DATA.put("email", EMAIL);
+                DATA.put("password", PASSWD);
+
+                //Guardar valores en BD
+                market.insert("users", null, DATA);
+                market.close();
+                Fname.setText("");
+                Lname.setText("");
+                Email.setText("");
+                Passwd.setText("");
+                Toast.makeText(this, "El usuario fue creado", Toast.LENGTH_SHORT).show();
+
+            }
         }else{
             Toast.makeText(this, "Hya campos vacios", Toast.LENGTH_SHORT).show();
+            Fname.setError("El campo no puede ser vacio");
+            Lname.setError("El campo no puede ser vacio");
+            Email.setError("El campo no puede ser vacio");
+            Passwd.setError("El campo no puede ser vacio");
         }
 
     }

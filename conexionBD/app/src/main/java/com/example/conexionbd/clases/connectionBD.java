@@ -1,6 +1,7 @@
 package com.example.conexionbd.clases;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -24,5 +25,12 @@ public class connectionBD extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public Cursor SelectUserData(){
+        SQLiteDatabase market = this.getReadableDatabase();
+
+        Cursor rows = market.rawQuery("SELECT * FROM users", null);
+        return rows;
     }
 }
