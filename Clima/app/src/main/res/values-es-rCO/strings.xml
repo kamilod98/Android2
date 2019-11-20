@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Clima</string>
+    <string name="titulo">¿Como esta el clima?</string>
+    <string name="Actusl">Actual</string>
+    <string name="Clima">Clima</string>
+    <string name="Clima_actual">Clima actual</string>
+    <string name="Clima_maximo">Clima maximo</string>
+    <string name="Clima_minimo">Clima minimo</string>
+    <string name="Estado_clima">Estado del clima</string>
+    <string name="Maximo">Maximo</string>
+    <string name="Minimo">Minimo</string>
+    <string name="btn_go">Ir al mapa</string>
+    <string name="btn_search">Buscar clima</string>
+</resources>

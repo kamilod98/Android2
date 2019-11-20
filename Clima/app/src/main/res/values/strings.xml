@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="titulo">How is the weather?</string>
+    <string name="btn_search">Search weather</string>
+    <string name="Actusl">Current</string>
+    <string name="Minimo">Min</string>
+    <string name="Maximo">Max</string>
+    <string name="Clima">Weather</string>
+    <string name="Clima_actual">Current weather</string>
+    <string name="Clima_minimo">Min weather</string>
+    <string name="Clima_maximo">Max weather</string>
+    <string name="Estado_clima">Here weather</string>
+    <string name="btn_go">Go to maps</string>
+</resources>
